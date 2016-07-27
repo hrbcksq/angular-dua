@@ -6,7 +6,7 @@ import {AutoGrowDirective} from './auto-grow.directive'
     selector: 'courses',
     template: `<h2>Courses</h2>
     {{ title }}
-    <input type='text' autoGrow></input>
+    <input type='text' autoGrow />
     <ul>
         <li *ngFor='#course of courses'>
             {{course}}
