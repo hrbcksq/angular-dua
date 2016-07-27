@@ -5,10 +5,13 @@ import {AuthorsComponent} from './authors.component'
 @Component({
     selector: 'my-app',
     template: `
-        <button class='btn btn-primary' [style.backgroundColor]="isActive ? 'blue' : 'gray'">Submit</button>    
+        <button class='btn btn-primary' (click)="onClick()">Submit</button>    
+        <button class='btn btn-primary' on-click="onClick()">Submit</button>
     `,
     directives: [CoursesComponent, AuthorsComponent]
 })
 export class AppComponent {
-    private isActive: boolean = false;    
+    onClick(){
+        console.log('Clicked');
+    }    
  }
