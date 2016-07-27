@@ -5,13 +5,12 @@ import {AuthorsComponent} from './authors.component'
 @Component({
     selector: 'my-app',
     template: `
-        <button class='btn btn-primary' (click)="onClick()">Submit</button>    
-        <button class='btn btn-primary' on-click="onClick()">Submit</button>
+        <button class='btn btn-primary' (click)="onClick($event)">Submit</button>
     `,
     directives: [CoursesComponent, AuthorsComponent]
 })
 export class AppComponent {
-    onClick(){
-        console.log('Clicked');
+    onClick($event){
+        console.log('Clicked', $event);
     }    
  }
