@@ -1,20 +1,21 @@
-import {Component, Renderer} from 'angular2/core'
+import {Component, Input, Output, EventEmitter} from 'angular2/core'
 
 @Component({
     selector: 'favorite',
-    template: '<i class="glyphicon" [class.glyphicon-star]="IsFavorite" [class.glyphicon-star-empty]="!IsFavorite"></i>',
+    template: '<i class="glyphicon" [class.glyphicon-star]="isFavorite" [class.glyphicon-star-empty]="!isFavorite"></i>',
     host:{
         '(click)':'onClick($event)'
     }
+    // inputs: ['isFavorite:is-favorite']
 })
 export class FavoriteComponent{
-    public IsFavorite: boolean = false;
+    @Input() isFavorite: boolean = false;    
 
-    constructor(private renderer: Renderer){
+    constructor(){
 
     }
 
     onClick($event){
-        this.IsFavorite = !this.IsFavorite;
+        this.isFavorite = !this.isFavorite;
     }
 }
