@@ -2,20 +2,17 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core'
 
 @Component({
     selector: 'favorite',
-    template: '<i class="glyphicon" [class.glyphicon-star]="isFavorite" [class.glyphicon-star-empty]="!isFavorite"></i>',
+    templateUrl: 'app/favorite.template.html',
+    styleUrls: ['app/favorite.style.css'],
     host:{
-        '(click)':'onClick($event)'
-    }
-    // inputs: ['isFavorite:is-favorite']
+        '(click)':'onClick()'
+    }    
 })
 export class FavoriteComponent{
-    @Input() isFavorite: boolean = false;    
+    @Input() isFavorite: boolean = false;        
+    @Output() onChange = new EventEmitter();    
 
-    constructor(){
-
-    }
-
-    onClick($event){
-        this.isFavorite = !this.isFavorite;
+    private onClick(){
+        this.onChange.emit(this);
     }
 }
