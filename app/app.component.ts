@@ -10,9 +10,17 @@ import {Component} from 'angular2/core';
             This is vertified content
         </div>
 
+        <div [hidden]='!visibility'>
+            Hidden content
+        </div>
+
         <div *ngIf="!visibility">
             This is unvertified content
-        </div>        
+        </div>
+
+        <div [hidden]='visibility'>
+            Unhidden content
+        </div>
         `   
         
 })
