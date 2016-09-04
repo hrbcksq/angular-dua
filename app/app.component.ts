@@ -1,33 +1,25 @@
 import {Component} from 'angular2/core';
 
+
 @Component({
-    selector: 'my-app',
-    // templateUrl: 'app/app.template.html',
+    selector: 'my-app',    
     template: `
-        <input type='button' class='btn btn-primary' value='button' (click)='onClick()'/>
+        <ul class='nav nav-tabs'>
+            <li (click)='tabChange("map")'><a>Map view</a></li>
+            <li (click)='tabChange("list")'><a>List view</a></li>
+        </ul>
 
-        <div *ngIf='visibility'>
-            This is vertified content
+        <div [ngSwitch]='viewMode'>
+            <template [ngSwitchWhen]="'map'">Map template content</template>
+            <template [ngSwitchWhen]="'list'">List template content</template>
         </div>
-
-        <div [hidden]='!visibility'>
-            Hidden content
-        </div>
-
-        <div *ngIf="!visibility">
-            This is unvertified content
-        </div>
-
-        <div [hidden]='visibility'>
-            Unhidden content
-        </div>
-        `   
-        
+        `          
 })
 export class AppComponent {
-    private visibility: Boolean = true;
+    private viewMode = 'map';
 
-    onClick(){
-        this.visibility = !this.visibility;
-    }    
+    tabChange(value: string){
+        this.viewMode = value; 
+        console.log(value);
+    }        
 }
