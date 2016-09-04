@@ -4,22 +4,13 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'my-app',    
     template: `
-        <ul class='nav nav-tabs'>
-            <li (click)='tabChange("map")'><a>Map view</a></li>
-            <li (click)='tabChange("list")'><a>List view</a></li>
-        </ul>
-
-        <div [ngSwitch]='viewMode'>
-            <template [ngSwitchWhen]="'map'">Map template content</template>
-            <template [ngSwitchWhen]="'list'">List template content</template>
-        </div>
+            <ul>
+                <li *ngFor='#course of colletion, #i = index'>
+                    {{i + 1}} - name: {{course}}
+                </li>
+            </ul>
         `          
 })
 export class AppComponent {
-    private viewMode = 'map';
-
-    tabChange(value: string){
-        this.viewMode = value; 
-        console.log(value);
-    }        
+    private colletion = ['course 1', 'course 2', 'course 3'];            
 }
