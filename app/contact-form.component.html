@@ -1,4 +1,4 @@
-<form action="" style='margin:20px;'>
+<form (ngSubmit)='onSubmit(form.form)' #form='ngForm' action="" style='margin:20px;'>
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input id="firstName" class="form-control" type="text" required minlength='3' ngControl='firstName' #firstName='ngForm'>
@@ -9,11 +9,11 @@
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea id="comment" cols="30" rows="10" class="form-control" required ngControl='comment' #comment='ngForm'></textarea>
+        <textarea id="comment" cols="30" rows="10" class="form-control" required minlength="3" ngControl='comment' #comment='ngForm'></textarea>
         <div class="validation" *ngIf="comment.touched && comment.errors">
             <div class="alert alert-danger" *ngIf="comment.errors.required">Comment is required</div>
             <div class="alert alert-danger" *ngIf="comment.errors.minlength">Comment required {{comment.errors.minlength.requiredLength}}</div>
-        </div>         
+        </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" [disabled]='!form.valid'>Submit</button>
 </form>
