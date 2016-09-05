@@ -7,6 +7,7 @@ import {BootstrapPanel} from './bs-panel.component'
             <bs-panel>
                 <div class='heading'>Cultscultscults</div>
                 <div class='body'>High Road</div>
+                <div class='body'>I Can Hardly Make You Mine</div>
             </bs-panel>
         `,    
     directives: [BootstrapPanel]
