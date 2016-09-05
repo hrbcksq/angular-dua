@@ -1,16 +1,14 @@
 import {Component} from 'angular2/core';
-import {BootstrapPanel} from './bs-panel.component'
+import {ZippyPanel} from './zippy.component'
 
 @Component({
     selector: 'my-app',    
     template: `                        
-            <bs-panel>
-                <div class='heading'>Cultscultscults</div>
-                <div class='body'>High Road</div>
-                <div class='body'>I Can Hardly Make You Mine</div>
-            </bs-panel>
+            <zippy-panel title='Manual Reloading'>
+                If the streams support doesn't suit your needs, you can fire the reload method manually by wrapping it in a task. This example will compile & auto-inject CSS just as before, but when HTML files are changed, the browsers will be reloaded instead.
+            </zippy-panel>
         `,    
-    directives: [BootstrapPanel]
+    directives: [ZippyPanel]
 })
 export class AppComponent {
     
