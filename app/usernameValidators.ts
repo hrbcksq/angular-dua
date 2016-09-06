@@ -4,9 +4,12 @@ export class UsernameValidators{
     static shouldBeUnique(control: Control){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if (control.value === 'ruslan')
-                    resolve({'shouldBeUnique': true});
-                resolve(null);
+                if (control.value === 'ruslan') {
+                    resolve({'shouldBeUnique': true})
+                }                    
+                else {
+                    resolve(null);
+                }                    
             });
         })
     }
