@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {ControlGroup, Control, Validators, FormBuilder} from 'angular2/common';
+import {UsernameValidators} from './usernameValidators'
 
 @Component({    
     selector: 'signup-form',
@@ -7,12 +8,18 @@ import {ControlGroup, Control, Validators, FormBuilder} from 'angular2/common';
     styleUrls: ['app/validation-form.css']     
 })
 export class SignupComponent {
-    form: ControlGroup;
+    form: ControlGroup;    
 
     constructor(formBuilder: FormBuilder) {
         this.form = formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
+            username: ['', Validators.compose([
+                Validators.required, 
+                UsernameValidators.cannotContainSpace
+            ])],
+            password: ['', Validators.compose([
+                Validators.required, 
+                UsernameValidators.cannotContainSpace
+            ])]
         })
      }
     // form = new ControlGroup({
