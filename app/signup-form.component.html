@@ -5,6 +5,7 @@
         <div *ngIf="username.touched && username.errors">
             <div class="alert alert-danger" *ngIf='username.errors.required'>Username is required</div>
             <div class="alert alert-danger" *ngIf='username.errors.cannotContainSpace'>Username cannot contain space</div>
+            <div class="alert alert-danger" *ngIf='username.errors.shouldBeUnique'>Username should be unique</div>
         </div>
 
     </div>

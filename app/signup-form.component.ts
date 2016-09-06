@@ -14,12 +14,13 @@ export class SignupComponent {
         this.form = formBuilder.group({
             username: ['', Validators.compose([
                 Validators.required, 
-                UsernameValidators.cannotContainSpace
-            ])],
+                UsernameValidators.cannotContainSpace]),
+                UsernameValidators.shouldBeUnique
+            ],
             password: ['', Validators.compose([
                 Validators.required, 
-                UsernameValidators.cannotContainSpace
-            ])]
+                UsernameValidators.cannotContainSpace])
+            ]
         })
      }
     // form = new ControlGroup({
