@@ -1,9 +1,11 @@
 form {
     margin: 20px;
 }
+
 .ng-invalid.ng-touched {
     border: 1px solid red;
 }
+
 .alert {
     margin-top: 5px;
     padding: 7px;
