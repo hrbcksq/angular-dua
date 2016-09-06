@@ -4,6 +4,7 @@
         <input ngControl='username' #username='ngForm' type="text" id='username' class="form-control">
         <div class="alert alert-info" *ngIf="username.control.pending">Checking for uniqueness...</div>
         <div *ngIf="username.touched && username.errors">
+            <div class="alert alert-danger" *ngIf='username.errors.invalidLogin'>Login is invalid.</div>
             <div class="alert alert-danger" *ngIf='username.errors.required'>Username is required.</div>
             <div class="alert alert-danger" *ngIf='username.errors.cannotContainSpace'>Username cannot contain space.</div>
             <div class="alert alert-danger" *ngIf='username.errors.shouldBeUnique'>This username is already taken.</div>
