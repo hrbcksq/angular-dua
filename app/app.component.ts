@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core';
-import {SignupComponent} from './signup-form.component'
+import {PasswordComponent} from './password-form.component'
 
 @Component({
     selector: 'my-app',    
     template: `                        
-            <signup-form></signup-form>
+            <password-form></password-form>
         `,    
-    directives: [SignupComponent]
+    directives: [PasswordComponent]
 })
 export class AppComponent {
     
