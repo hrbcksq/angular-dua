@@ -29,5 +29,9 @@ export class PasswordComponent {
                 'invalid' : true
             });
         }
+        else{
+            alert("Password successfully changed")
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 <html>
 
-  <head>
+<head>
     <title>Angular 2 QuickStart</title>
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
@@ -15,25 +15,32 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>    
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+
     <!-- 2. Configure SystemJS -->
     <script>
-      System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('app/boot')
+        System.config({
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }                
+            },
+            paths: {
+                underscore: './node_modules/underscore/underscore.js'
+            }            
+        });
+        System.import('app/boot')
             .then(null, console.error.bind(console));
     </script>
 
-  </head>
+</head>
 
-  <!-- 3. Display the application -->
-  <body>
+<!-- 3. Display the application -->
+
+<body>
     <my-app>Loading...</my-app>
-  </body>
+</body>
 
 </html>
