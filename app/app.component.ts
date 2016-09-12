@@ -1,6 +1,8 @@
 import {Component} from 'angular2/core';
 import {PasswordComponent} from './password-form.component'
-import * as _ from 'underscore';
+import {Observable} from 'rxjs/Rx';
+import {SoundCloudService} from './SoundCloudService'
+
 
 @Component({
     selector: 'my-app',    
@@ -15,37 +17,31 @@ import * as _ from 'underscore';
             <ul>
             <span>{{tracks?.length}}</span>
         `,    
-    directives: [PasswordComponent]
+    directives: [PasswordComponent],
+    providers: [SoundCloudService]
 })
 export class AppComponent {
     public tracks = [];
 
-    constructor(){        
-        SC.initialize({
-          client_id: 'fb928276e4be25bd006a313e6f246c97'
-        });
-
-    }
-
-    debouncedSearch = _.debounce((value) => {
-                SC.get('/tracks', { 
-                    q: value,
-                    license: 'cc-by-sa'
-                }).then((tracks) => {
-                  this.tracks = _.filter(tracks, (item) => {return item;});
-                });
-            }, 500);
+    constructor(private _scService: SoundCloudService){        
+              
+    }    
 
     ngAfterViewInit() {
-        $('#search').keyup((event) => {
-            var value = event.target.value;
-            if (value.length > 3){
-                this.debouncedSearch(value);    
-            }            
 
-            
+        let keyups = Observable.fromEvent($('#search'), 'keyup')
+            .map((event) => event.target.value)
+            .filter((value) => {return value && value.length > 3;})
+            .distinctUntilChanged()
+            .debounceTime(400)
+            .flatMap(search => {
+                return Observable.fromPromise(this._scService.search(search));
+            });
+
+
+        keyups.subscribe((value) => {            
+            this.tracks = value as Array<Object>;
         });
-
     }
 
 }
