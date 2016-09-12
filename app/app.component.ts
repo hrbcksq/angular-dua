@@ -10,13 +10,17 @@ import {Observable} from 'rxjs/Rx';
 export class AppComponent {    
 
     constructor() {
-        var observable = Observable.of([1, 2, 3]).delay(500);
-        //With this, the observable times out after 1 second and you'll get the error message in the console.
-        observable
-            .timeout(1000)
-            .subscribe(
-                x => console.log(x),
-                error => console.error(error));
+        // var observable = Observable.of([1, 2, 3]).delay(500);
+        // var observable = Observable.fromArray([1, 2, 3]);
+        var observable = Observable.throw(new Error('error'));
+        
+                
+        //Observables can go in the 'completed' state, which means they will no longer push data interm in the future.
+        //onCompleted An Observable calls this method after it has called onNext for the final time, if it has not encountered any errors.
+        observable.subscribe(
+            x => console.log(x), 
+            error => console.log(error),
+            () => console.log("completed"));
         
     }
 }
