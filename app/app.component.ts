@@ -1,7 +1,10 @@
 import {Component} from 'angular2/core';
-import {PasswordComponent} from './password-form.component'
-import {Observable} from 'rxjs/Rx';
-import {SoundCloudService} from './SoundCloudService'
+import {PasswordComponent} from './password-form.component';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/observable/fromEvent';
+import {SoundCloudService} from './SoundCloudService';
 
 
 @Component({
@@ -24,7 +27,7 @@ export class AppComponent {
     public tracks = [];
 
     constructor(private _scService: SoundCloudService){        
-              
+          console.log(new Observable());
     }    
 
     ngAfterViewInit() {
@@ -41,9 +44,7 @@ export class AppComponent {
 
         var subscription = keyups.subscribe((value) => {            
             this.tracks = value as Array<Object>;
-        });
-
-        subscription.unsubscribe();
+        });        
     }
 
 }
