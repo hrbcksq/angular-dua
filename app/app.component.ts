@@ -39,9 +39,11 @@ export class AppComponent {
             });
 
 
-        keyups.subscribe((value) => {            
+        var subscription = keyups.subscribe((value) => {            
             this.tracks = value as Array<Object>;
         });
+
+        subscription.unsubscribe();
     }
 
 }
