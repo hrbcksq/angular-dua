@@ -10,19 +10,27 @@ import {Observable} from 'rxjs/Rx';
 export class AppComponent {    
 
     constructor() {
-        var userStream = Observable.of({
-            userId: 1, 
-            username: 'hrbcksq'
-        }).delay(2000);
+        var counter = 0;
 
-        var tweetStream = Observable.of([1, 2, 3]).delay(1500);
+        var observable = Observable.of('url')
+            .flatMap(() => {
+                if (++counter < 2) {
+                    return Observable.throw(new Error('Request faliled.'));
+                }
+                else {
+                    return Observable.of([1, 2, 3]);
+                }                                
+            });
 
-        Observable
-            .forkJoin(userStream, tweetStream)
-            .map(joined => {
-                return {user: joined[0], tweets: joined[1]};
-            })
-            .subscribe(x => console.log(x), 
-                error => console.error(error));
+         observable
+             .retry(4)             
+             .subscribe(
+                 x => {
+                     console.log(x)
+                 },
+                 error => {
+                     console.error(error)
+                 });
+        
     }
 }
