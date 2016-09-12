@@ -15,22 +15,24 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>    
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>        
+    <!-- <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script> -->
     <!-- 2. Configure SystemJS -->
     <script>
         System.config({
             packages: {
-                app: {
+                app: {  
                     format: 'register',
                     defaultExtension: 'js'
                 }                
             },
             paths: {
-                underscore: './node_modules/underscore/underscore.js'
+                underscore: './node_modules/underscore/underscore.js',
+                sc: 'sc-sdk.js'
+                // 'sc': "sc-sdk.js"
             }            
         });
+
         System.import('app/boot')
             .then(null, console.error.bind(console));
     </script>
