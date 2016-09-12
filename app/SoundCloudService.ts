@@ -12,18 +12,10 @@ export class SoundCloudService {
    }
 
    search(search) {
-        return new Promise((resolve, reject) => {
-         SC.get('/tracks', {
+        return SC.get('/tracks', {
             q: search,
             license: 'cc-by-sa'
-         })
-            .then(result => {
-               resolve(result)
-            })
-            .catch(error => {
-               reject(error)
-            });
-        });
+         });            
     }
 }
 

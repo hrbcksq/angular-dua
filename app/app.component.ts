@@ -10,27 +10,15 @@ import {Observable} from 'rxjs/Rx';
 export class AppComponent {    
 
     constructor() {
-        var counter = 0;
+        // var remoteDataStream = Observable.throw(new Error("Something failed."));
+        var remoteDataStream = Observable.of([4, 5, 6]);
 
-        var observable = Observable.of('url')
-            .flatMap(() => {
-                if (++counter < 2) {
-                    return Observable.throw(new Error('Request faliled.'));
-                }
-                else {
-                    return Observable.of([1, 2, 3]);
-                }                                
-            });
-
-         observable
-             .retry(4)             
-             .subscribe(
-                 x => {
-                     console.log(x)
-                 },
-                 error => {
-                     console.error(error)
-                 });
+        remoteDataStream
+            .catch(err => {
+                var localDataStream = Observable.of([1, 2, 3]);
+                return localDataStream;
+            })
+            .subscribe(x => console.log(x));      
         
     }
 }
