@@ -12,8 +12,9 @@ export class AppComponent {
 
     constructor(fb: FormBuilder) {
         var observable = Observable.interval(1000);
-        observable.map(x => {
+        observable.flatMap(x => {
             console.log("calling the server to get the latest news");
+            return Observable.of([1, 2, 3]);
         })
         .subscribe(news => console.log(news));
     }
