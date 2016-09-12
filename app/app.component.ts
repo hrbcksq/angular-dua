@@ -10,15 +10,13 @@ import {Observable} from 'rxjs/Rx';
 export class AppComponent {    
 
     constructor() {
-        // var remoteDataStream = Observable.throw(new Error("Something failed."));
-        var remoteDataStream = Observable.of([4, 5, 6]);
-
-        remoteDataStream
-            .catch(err => {
-                var localDataStream = Observable.of([1, 2, 3]);
-                return localDataStream;
-            })
-            .subscribe(x => console.log(x));      
+        var observable = Observable.of([1, 2, 3]).delay(500);
+        //With this, the observable times out after 1 second and you'll get the error message in the console.
+        observable
+            .timeout(1000)
+            .subscribe(
+                x => console.log(x),
+                error => console.error(error));
         
     }
 }
