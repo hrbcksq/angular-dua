@@ -7,15 +7,22 @@ import {Observable} from 'rxjs/Rx';
     selector: 'my-app',
     template: ``
 })
-export class AppComponent {
-    public form: ControlGroup;
+export class AppComponent {    
 
-    constructor(fb: FormBuilder) {
-        var observable = Observable.interval(1000);
-        observable.flatMap(x => {
-            console.log("calling the server to get the latest news");
-            return Observable.of([1, 2, 3]);
-        })
-        .subscribe(news => console.log(news));
+    constructor() {
+        var userStream = Observable.of({
+            userId: 1, 
+            username: 'hrbcksq'
+        }).delay(2000);
+
+        var tweetStream = Observable.of([1, 2, 3]).delay(1500);
+
+        Observable
+            .forkJoin(userStream, tweetStream)
+            .map(joined => {
+                return {user: joined[0], tweets: joined[1]};
+            })
+            .subscribe(x => console.log(x), 
+                error => console.error(error));
     }
 }
