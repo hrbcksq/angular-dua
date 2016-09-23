@@ -1,0 +1,11 @@
+<div *ngIf='current'>
+	<div class="current-user">
+		<h2><b>@{{current.login}}</b></h2>
+    	<github-template [avatarUrl]='current.avatar_url'></github-template>	
+	</div>
+
+	<div class="followers">
+		<h2>Followers</h2>
+		<github-template *ngFor='let user of followers' [avatarUrl]='user.avatar_url' [login]='user.login'></github-template>	
+	</div>
+</div>
