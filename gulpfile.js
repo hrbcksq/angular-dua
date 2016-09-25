@@ -1,18 +1,22 @@
 var gulp = require('gulp'),
     ts = require('gulp-typescript'),
-    sync = require('browser-sync').create();
+    sync = require('browser-sync').create(),
+    historyApiFallback = require('connect-history-api-fallback');
 
 
 gulp.task('serve', ['typescript'], function() {
     sync.init({
         server: {
             baseDir: './',
-            middleware: function (req, res, next) {
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-                next();
-            }          
+            middleware: [
+                historyApiFallback(),
+                (req, res, next) => {
+                    res.setHeader('Access-Control-Allow-Origin', '*');
+                    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+                    next();
+                }
+            ]          
         }        
     });
 

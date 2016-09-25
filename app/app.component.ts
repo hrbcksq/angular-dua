@@ -1,29 +1,18 @@
-import {Component, OnInit} from 'angular2/core';
-import {PostService} from './PostService'
-import {HTTP_PROVIDERS} from 'angular2/http'
+import {Component} from 'angular2/core';
+import {RouteConfig, RouterOutlet, RouterLink} from 'angular2/router'
 
+import {AlbumsComponent} from './albums.component';
+import {ContactComponent} from './contact.component';
+
+@RouteConfig([
+	{ path: '/albums', name: 'Albums', component: AlbumsComponent, useAsDefault: true },	
+	{ path: '/contact', name: 'Contact', component: ContactComponent },
+	{ path: '/*other', name: 'Other', redirectTo: ['Albums'] }
+])
 @Component({
     selector: 'my-app',
-    template: `
-    <ul>
-        <li *ngFor='let post of _posts;'>
-            {{post | json}}
-        </li>
-    </ul>`,
-    providers: [PostService, HTTP_PROVIDERS]
-
+    templateUrl: '/app/app.component.html',
+    directives: [RouterOutlet, RouterLink]
 })
-export class AppComponent implements OnInit {        
-    private _posts = [];
-
-    constructor(private _postService: PostService) {
-
-    }
-
-    ngOnInit(){
-        this._postService.getPosts().subscribe(x => {
-            this._posts = x;
-            console.log(x);
-        });
-    }
+export class AppComponent {
 }
