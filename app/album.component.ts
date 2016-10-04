@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {PhotoService} from './photo.service';
-import {Params} from '@angular/router';
 
 
 @Component({
@@ -13,17 +12,16 @@ import {Params} from '@angular/router';
             <img *ngFor="let photo of photos" src="{{ photo.thumbnailUrl }}">
         </div>
     `,
-    providers: [PhotoService, Params]
+    providers: [PhotoService]
 })
 export class AlbumComponent implements OnInit {
     isLoading = true;
     photos;
 
-    constructor(private _photoService: PhotoService, private _params: Params){
+    constructor(private _photoService: PhotoService){
     }   
     
-    ngOnInit(){
-        console.log(this._params["id"]);
+    ngOnInit(){        
         this._photoService.getPhotos(1)
             .subscribe(photos => {
                 this.isLoading = false;

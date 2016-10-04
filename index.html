@@ -6,47 +6,17 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/http.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+
     <!-- 2. Configure SystemJS -->
+    <script src="system.config.js"></script>
     <script>
-    System.config({
-        paths: {
-            // paths serve as alias
-            'npm:': 'node_modules/'
-        },
-        // map tells the System loader where to look for things
-        map: {
-            // our app is within the app folder
-            app: 'app',
-            // angular bundles
-            '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
-            '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
-            '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
-            '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
-            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-            '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
-            '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
-            '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-            // other libraries
-            'rxjs': 'npm:rxjs',
-            'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-        },
-        packages: {
-            app: {
-                format: 'register',
-                defaultExtension: 'js'
-            }
-        }
-    });
-    System.import('app/boot')
-        .then(null, console.error.bind(console));
+        System.import('app/main')
+            .then(null, console.error.bind(console));
     </script>
 </head>
 <!-- 3. Display the application -->

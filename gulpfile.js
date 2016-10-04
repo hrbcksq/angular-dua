@@ -16,8 +16,8 @@ gulp.task('serve', ['typescript'], function() {
                     res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
                     next();
                 }
-            ]          
-        }        
+            ]
+        }
     });
 
     gulp.watch('app/*.ts', ['typescript']);
@@ -27,7 +27,7 @@ gulp.task('serve', ['typescript'], function() {
 gulp.task('typescript', function() {
     var tsProject = ts.createProject('tsconfig.json');
     return gulp.src('app/*.ts')
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .pipe(gulp.dest('./app'))
 });
 

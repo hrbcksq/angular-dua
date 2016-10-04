@@ -1,7 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {Component, OnInit} from '@angular/core';
 import {PhotoService} from './photo.service';
-import {RouterLink} from 'angular2/router';
 
 @Component({
     template: `
@@ -17,8 +15,7 @@ import {RouterLink} from 'angular2/router';
             </li> 
         </ul>
     `,
-    providers: [PhotoService, HTTP_PROVIDERS],
-    directives: [RouterLink]
+    providers: [PhotoService]    
 })
 export class AlbumsComponent implements OnInit {
     isLoading = true;
